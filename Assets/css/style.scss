@@ -1,0 +1,189 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+section.login {
+    background-color: #eee;
+    min-height: 100vh;
+    min-width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.contents {
+    display: flex;
+    background-color: #fff;
+    height: 400px;
+    margin: 0 auto;
+
+
+}
+
+.banner-login {
+    background-color: #71C9CE;
+    color: #ffffff;
+    padding: 40px;
+
+    h2 {
+        font-weight: 400;
+        font-size: 36px;
+        margin: 20px;
+    }
+
+    p {
+        display: block;
+        margin: 20px;
+
+    }
+
+    a {
+        padding: 10px;
+        text-decoration: none;
+        background-color: #F67280;
+        margin: 5px 20px;
+        color: white;
+        text-align: center;
+    }
+}
+
+.form-login {
+    padding: 40px;
+
+    h1 {
+        font-size: 50px;
+        font-weight: normal;
+    }
+
+    p {
+        color: grey;
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    input {
+        width: 100%;
+        height: 32px;
+        border: none;
+        margin: 10px 0px;
+        border-bottom: 5px solid #eeeeee;
+    }
+
+    input:focus {
+        outline: none;
+    }
+
+
+    button {
+        display: block;
+        padding: 10px 20px;
+        border: none;
+        background-color: #71C9CE;
+        font-size: 24px;
+        font-weight: normal;
+        margin-top: 40px;
+
+    }
+
+    button:hover {
+        background-color: rgb(61, 160, 165);
+    }
+}
+
+.styled-select {
+    width: 200px;
+    height: 34px;
+    overflow: hidden;
+    background: no-repeat right #71C9CE;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    transition: ease all 0.3s;
+    -webkit-transition: ease all 0.3s;
+
+}
+
+.styled-select:hover {
+    box-shadow: 0 0 7px 5px lightblue;
+}
+
+.styled-select select {
+    background: transparent;
+    width: 220px;
+    padding: 5px;
+    font-size: 16px;
+    line-height: 1;
+    border: 0;
+    border-radius: 0;
+    height: 34px;
+    -webkit-appearance: none;
+}
+
+.styled-select select {
+    color: #fff;
+}
+
+div.ilustrasi {
+    width: 50vw;
+
+    img {
+        width: 80%;
+    }
+}
+
+h1.mapel {
+    margin: 40px;
+
+    span {
+        color: #71C9CE;
+    }
+}
+
+div.list-mapel {
+    width: 50vw;
+    padding: 40px;
+
+    ol {
+        list-style-type: decimal;
+
+        li {
+            padding: 5px 20px;
+            font-size: 30px;
+
+            a {
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+// sign Up
+
+.contents.signup {
+    height: 500px;
+}
+
+@media only screen and (max-width: 767px) {
+
+    section.login {
+        display: block;
+    }
+
+    div.contents {
+        flex-direction: column;
+        height: auto;
+
+        .form-login {
+            height: 100vh;
+        }
+
+    }
+
+    .form-login.signup {
+        height: 500px;
+        background-color: #fff;
+    }
+}
