@@ -21,10 +21,14 @@
             <div class="form-login signup">
                 <h1 class="login-text">Registration</h1>
                 <p>register Your Account</p>
-                <form action="" method="post">
-                    <input type="text" name="name" name="name" placeholder="Name">
+                <form action="<?= base_url('Auth/signup') ?>" method="post">
+                    <input type="text" name="name" placeholder="Name">
+                    <small class="form-error"><?= form_error('name'); ?></small>
                     <input type="text" name="email" placeholder="Email">
-                    <input type="password" name="password" placeholder="Password">
+                    <small class="form-error"><?= form_error('email'); ?></small>
+                    <input type="password" name="password1" placeholder="Password" id="password1">
+                    <small class="form-error"><?= form_error('password1'); ?></small>
+                    <input type="password" name="password2" placeholder="Password" id="password2">
                     <select name="jurusan" id="jurusan" class="styled-select">
                         <option value="mipa">Matematika dan Ilmu Pengetahuan Alam</option>
                         <option value="ips">Ilmu Pengetahuan Sosial</option>

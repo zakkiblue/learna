@@ -30,6 +30,12 @@ div.contents {
   margin: 0 auto;
 }
 
+div.contents.signup {
+  height: 550px;
+  padding: 0px 50px;
+  background-color: #eeeeee;
+}
+
 .banner-login {
   background-color: #71C9CE;
   color: #ffffff;
@@ -58,6 +64,7 @@ div.contents {
 
 .form-login {
   padding: 40px;
+  background: #ffffff;
 }
 
 .form-login h1 {
@@ -95,6 +102,13 @@ div.contents {
 
 .form-login button:hover {
   background-color: #3da0a5;
+}
+
+small.form-error p {
+  font-size: 12px;
+  color: red;
+  margin: 0px;
+  padding: 0px;
 }
 
 .styled-select {
@@ -164,10 +178,6 @@ div.list-mapel ol li a {
   text-decoration: none;
 }
 
-.contents.signup {
-  height: 500px;
-}
-
 @media only screen and (max-width: 767px) {
   section.login {
     display: block;
@@ -181,6 +191,9 @@ div.list-mapel ol li a {
   }
   div.contents .form-login {
     height: 100vh;
+  }
+  div.contents.signup {
+    padding: 0px;
   }
   .form-login.signup {
     height: 500px;

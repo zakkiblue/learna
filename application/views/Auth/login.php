@@ -10,6 +10,7 @@
 </head>
 
 <body>
+    <?= $this->session->flashdata('massage'); ?>
     <section class="login">
         <div class="contents">
             <div class="form-login">
