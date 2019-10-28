@@ -35,6 +35,24 @@ nav .foto-profil {
   border-radius: 50%;
   height: 150px;
   width: 150px;
+  overflow: hidden;
+}
+
+nav .foto-profil img {
+  max-height: 150px;
+  overflow: hidden;
+}
+
+nav a {
+  text-decoration: none;
+  position: relative;
+  top: 200px;
+  width: 100%;
+  padding: 10px;
+}
+
+nav a :hover {
+  background-color: #3da0a5;
 }
 
 nav p {

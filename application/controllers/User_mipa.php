@@ -7,6 +7,9 @@ class User_mipa extends CI_Controller
     public function index()
     {
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        echo "Welcome " . $data['user']['name'];
+        $this->load->view('templates/header_dashboard', $data);
+        $this->load->view('templates/sidebar_dashboard', $data);
+        $this->load->view('user/index', $data);
+        $this->load->view('templates/footer_dashboard');
     }
 }
