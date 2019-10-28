@@ -18,7 +18,9 @@
                 <p>Sign in to your account</p>
                 <form action="" method="post">
                     <input type="text" name="email" placeholder="Email">
+                    <small class="form-error"><?= form_error('email'); ?></small>
                     <input type="password" name="password" placeholder="Password">
+                    <small class="form-error"><?= form_error('password'); ?></small>
                     <button type="submit">Login</button>
                 </form>
             </div>

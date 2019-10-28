@@ -12,7 +12,46 @@ class Auth extends CI_Controller
 
     public function index()
     {
-        $this->load->view('Auth/login');
+        //Validasi form
+        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
+        $this->form_validation->set_rules('password', 'Password', 'required|trim');
+        if ($this->form_validation->run() == false) {
+            $this->load->view('Auth/login');
+        } else {
+            $this->_login();
+        }
+    }
+    private function _login()
+    {
+        $email = $this->input->post('email');
+        $password = $this->input->post('password');
+
+        $user = $this->db->get_where('user', ['email' => $email])->row_array();
+
+        //user found
+        if ($user) {
+            //user active
+            if ($user['is_active'] == 1) {
+                //cek password
+                if (password_verify($password, $user['password'])) {
+                    $data = [
+                        'email' => $user['email'],
+                        'role_id' => $user['role_id'],
+                    ];
+                    $this->session->set_userdata($data);
+                    redirect('user_mipa');
+                } else {
+                    $this->session->set_flashdata('massage', '<div class="alerts failed" role="alert">Password salah</div>');
+                    redirect('Auth');
+                }
+            } else {
+                $this->session->set_flashdata('massage', '<div class="alerts failed" role="alert">Email belum diverifikasi</div>');
+                redirect('Auth');
+            }
+        } else {
+            $this->session->set_flashdata('massage', '<div class="alerts failed" role="alert">Email belum terdaftar</div>');
+            redirect('Auth');
+        }
     }
 
     public function signup()
@@ -33,8 +72,8 @@ class Auth extends CI_Controller
             }
 
             $data = [
-                'name' => $this->input->post('name', true),
-                'email' => $this->input->post('email', true),
+                'name' => htmlspecialchars($this->input->post('name', true)),
+                'email' => htmlspecialchars($this->input->post('email', true)),
                 'image' => 'default.jpg',
                 'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
                 'role_id' => $role,
@@ -46,5 +85,14 @@ class Auth extends CI_Controller
             $this->session->set_flashdata('massage', '<div class="alerts success" role="alert">Registrasi berhasil</div>');
             redirect('Auth');
         }
+    }
+
+    public function logout()
+    {
+        $this->session->unset_userdata('email');
+        $this->session->unset_userdata('role_id');
+
+        $this->session->set_flashdata('massage', '<div class="alerts success" role="alert">Berhasil logout</div>');
+        redirect('Auth');
     }
 }
