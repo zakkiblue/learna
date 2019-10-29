@@ -11,7 +11,7 @@
             <li>Raport</li>
             <li>Bag</li>
         </ul>
-        <a href="<?= base_url(); ?>auth/logout">
+        <a class="logout" href="<?= base_url(); ?>auth/logout">
             <p class="logout">Logout</p>
         </a>
     </nav>

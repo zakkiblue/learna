@@ -17,6 +17,7 @@ nav {
 	align-items: center;
 	flex-direction: column;
 	text-align: center;
+	position: relative;
 
 	.foto-profil {
 		margin: 50px 20px 5px 20px;
@@ -32,10 +33,14 @@ nav {
 		}
 	}
 
-	a {
+	a.nav-item {
 		text-decoration: none;
-		position: relative;
-		top: 200px;
+	}
+
+	a.logout {
+		text-decoration: none;
+		position: absolute;
+		bottom: 10px;
 		width: 100%;
 		padding: 10px;
 
@@ -71,4 +76,92 @@ nav {
 .main-content {
 	padding-left: 50px;
 	padding-top: 50px;
+}
+
+.form-input {
+	padding: 40px;
+	background: #ffffff;
+
+	h1 {
+		font-size: 50px;
+		font-weight: normal;
+	}
+
+	p {
+		color: grey;
+		font-size: 24px;
+		margin-bottom: 20px;
+	}
+
+	input {
+		width: 100%;
+		height: 32px;
+		border: none;
+		margin: 10px 0px;
+		border-bottom: 5px solid #eeeeee;
+	}
+
+	input:focus {
+		outline: none;
+	}
+
+
+	button {
+		display: block;
+		padding: 10px 20px;
+		border: none;
+		background-color: #71C9CE;
+		font-size: 24px;
+		font-weight: normal;
+		margin-top: 40px;
+
+	}
+
+	button:hover {
+		background-color: rgb(61, 160, 165);
+	}
+
+
+}
+
+small.form-error p {
+	font-size: 12px;
+	color: red;
+	margin: 0px;
+	padding: 0px;
+}
+
+
+
+.styled-select {
+	width: 200px;
+	height: 34px;
+	overflow: hidden;
+	background: no-repeat right #71C9CE;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	transition: ease all 0.3s;
+	-webkit-transition: ease all 0.3s;
+
+}
+
+.styled-select:hover {
+	box-shadow: 0 0 7px 5px lightblue;
+}
+
+.styled-select select {
+	background: transparent;
+	width: 220px;
+	padding: 5px;
+	font-size: 16px;
+	line-height: 1;
+	border: 0;
+	border-radius: 0;
+	height: 34px;
+	-webkit-appearance: none;
+}
+
+.styled-select select {
+	color: #fff;
 }
