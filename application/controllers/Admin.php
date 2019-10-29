@@ -53,7 +53,7 @@ class Admin extends CI_Controller
                     redirect('Admin/input_materi');
                 }else {
                     $error_msg = $this->upload->display_errors();
-                    $this->session->set_flashdata('massage', '<div class="alerts success" role="alert">'.$error_msg.'</div>');
+                    $this->session->set_flashdata('massage', '<div class="alerts failed" role="alert">'.$error_msg.'</div>');
                     redirect('Admin/input_materi');
                 }
             }
