@@ -7,7 +7,7 @@ class Admin extends CI_Controller
     public function index()
     {
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $data['title'] = "Admin";
+        $data['title'] = "Admin ".$data['user']['name'];
         $this->load->view('templates/header_dashboard', $data);
         $this->load->view('templates/sidebar_admin', $data);
         $this->load->view('admin/index', $data);
@@ -78,9 +78,12 @@ class Admin extends CI_Controller
                     redirect('Admin/input_materi');
                 }else {
                     $error_msg = $this->upload->display_errors();
-                    $this->session->set_flashdata('massage', '<div class="alerts success" role="alert">'.$error_msg.'</div>');
+                    $this->session->set_flashdata('massage', '<div class="alerts failed" role="alert">'.$error_msg.'</div>');
                     redirect('Admin/input_materi');
                 }
+            }else {
+                $this->session->set_flashdata('massage', '<div class="alerts failed" role="alert">File harus diisi</div>');
+                redirect('Admin/input_materi');
             }
 
 

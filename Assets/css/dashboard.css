@@ -87,6 +87,25 @@ nav li:hover {
   padding-top: 50px;
 }
 
+div.alerts {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 5px auto;
+  text-align: center;
+  color: white;
+  font-size: 14px;
+}
+
+.success {
+  background-color: #1ac71a;
+}
+
+.failed {
+  background-color: red;
+}
+
 .form-input {
   padding: 40px;
   background: #ffffff;

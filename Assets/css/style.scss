@@ -109,7 +109,25 @@ small.form-error p {
 	padding: 0px;
 }
 
+//alert
+div.alerts {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	padding: 5px auto;
+	text-align: center;
+	color: white;
+	font-size: 14px;
+}
 
+.success {
+	background-color: rgb(26, 199, 26);
+}
+
+.failed {
+	background-color: red;
+}
 
 .styled-select {
 	width: 200px;
