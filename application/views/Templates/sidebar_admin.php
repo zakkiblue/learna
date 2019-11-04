@@ -12,8 +12,8 @@
             <a href="#" class="nav-item">
                 <li>Profil</li>
             </a>
-            <a href="<?= base_url('admin/input_materi/') ?>" class="nav-item">
-                <li>Input Materi</li>
+            <a href="<?= base_url('admin/manage_materi/') ?>" class="nav-item">
+                <li>Manage Materi</li>
             </a>
             <a href="#" class="nav-item">
                 <li>Monitor Siswa</li>

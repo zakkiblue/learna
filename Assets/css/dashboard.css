@@ -188,4 +188,36 @@ small.form-error p {
 .styled-select select {
   color: #fff;
 }
+
+table.table {
+  margin-top: 20px;
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+table.table th,
+table.table td {
+  text-align: left;
+  padding: 8px;
+}
+
+table.table th tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.button {
+  padding: 5px;
+  margin: 10px;
+  margin-left: 0px;
+  display: inline-block;
+  background-color: #71C9CE;
+  text-decoration: none;
+  color: white;
+}
+
+a {
+  text-decoration: none;
+}
 /*# sourceMappingURL=dashboard.css.map */

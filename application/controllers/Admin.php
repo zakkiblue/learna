@@ -13,6 +13,16 @@ class Admin extends CI_Controller
         $this->load->view('admin/index', $data);
         $this->load->view('templates/footer_dashboard');
     }
+    public function manage_materi()
+    {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['mapels'] = $this->db->get('mapel')->result_array();
+        $data['title'] = "Admin " . $data['user']['name'];
+        $this->load->view('templates/header_dashboard', $data);
+        $this->load->view('templates/sidebar_admin', $data);
+        $this->load->view('admin/manage_materi', $data);
+        $this->load->view('templates/footer_dashboard');
+    }
     public function add_mapel()
     {
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
