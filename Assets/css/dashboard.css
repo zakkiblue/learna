@@ -30,20 +30,6 @@ nav {
   position: relative;
 }
 
-nav .foto-profil {
-  margin: 50px 20px 5px 20px;
-  background-color: white;
-  border-radius: 50%;
-  height: 150px;
-  width: 150px;
-  overflow: hidden;
-}
-
-nav .foto-profil img {
-  max-height: 150px;
-  overflow: hidden;
-}
-
 nav a.nav-item {
   text-decoration: none;
 }
@@ -53,6 +39,10 @@ nav a.logout {
   position: absolute;
   bottom: 10px;
   width: 100%;
+  padding: 10px;
+}
+
+nav a.logout p {
   padding: 10px;
 }
 
@@ -80,6 +70,20 @@ nav li {
 
 nav li:hover {
   background-color: #3da0a5;
+}
+
+.foto-profil {
+  margin: 50px 20px 5px 20px;
+  background-color: white;
+  border-radius: 50%;
+  height: 150px;
+  width: 150px;
+  overflow: hidden;
+}
+
+.foto-profil img {
+  max-height: 150px;
+  overflow: hidden;
 }
 
 .main-content {
@@ -203,8 +207,17 @@ table.table td {
   padding: 8px;
 }
 
+table.table tr,
+table.table td {
+  border: #eee solid 1px;
+}
+
+table.table tr:hover {
+  background-color: #71C9CE;
+}
+
 table.table th tr:nth-child(even) {
-  background-color: #f2f2f2;
+  background-color: #eee;
 }
 
 .button {
@@ -219,5 +232,11 @@ table.table th tr:nth-child(even) {
 
 a {
   text-decoration: none;
+}
+
+.badge {
+  color: black;
+  padding: 4px;
+  border-radius: 10%;
 }
 /*# sourceMappingURL=dashboard.css.map */

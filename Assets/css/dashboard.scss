@@ -19,20 +19,6 @@ nav {
 	text-align: center;
 	position: relative;
 
-	.foto-profil {
-		margin: 50px 20px 5px 20px;
-		background-color: white;
-		border-radius: 50%;
-		height: 150px;
-		width: 150px;
-		overflow: hidden;
-
-		img {
-			max-height: 150px;
-			overflow: hidden;
-		}
-	}
-
 	a.nav-item {
 		text-decoration: none;
 	}
@@ -43,6 +29,10 @@ nav {
 		bottom: 10px;
 		width: 100%;
 		padding: 10px;
+
+		p {
+			padding: 10px;
+		}
 
 		:hover {
 			background-color: rgb(61, 160, 165);
@@ -70,6 +60,20 @@ nav {
 	li:hover {
 		background-color: rgb(61, 160, 165);
 
+	}
+}
+
+.foto-profil {
+	margin: 50px 20px 5px 20px;
+	background-color: white;
+	border-radius: 50%;
+	height: 150px;
+	width: 150px;
+	overflow: hidden;
+
+	img {
+		max-height: 150px;
+		overflow: hidden;
 	}
 }
 
@@ -200,8 +204,17 @@ table.table {
 		padding: 8px;
 	}
 
+	tr,
+	td {
+		border: #eee solid 1px;
+	}
+
+	tr:hover {
+		background-color: #71C9CE;
+	}
+
 	th tr:nth-child(even) {
-		background-color: #f2f2f2
+		background-color: #eee;
 	}
 }
 
@@ -217,4 +230,10 @@ table.table {
 
 a {
 	text-decoration: none;
+}
+
+.badge {
+	color: black;
+	padding: 4px;
+	border-radius: 10%;
 }

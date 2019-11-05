@@ -44,7 +44,7 @@ class Admin extends CI_Controller
 
             $this->db->insert('mapel', $data);
             $this->session->set_flashdata('massage', '<div class="alerts success" role="alert">Mata pelajaran berhasil ditambahkan!</div>');
-            redirect('Admin/add_mapel');
+            redirect('Admin/manage_mapel');
         }
     }
 

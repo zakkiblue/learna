@@ -16,18 +16,12 @@
         <?php $i = 1;
         foreach ($mapels as $mapel) : ?>
             <tr>
-                <td><?= $i; ?>
-                </td>
-                <td><?= $mapel['mapel_name']; ?>
-                </td>
-                <td><?= $i; ?>
-                </td>
-                <td><?= $i; ?>
-                </td>
-                <td><?= $mapel['chapters']; ?>
-                </td>
-                <td> Edit | Delete
-                </td>
+                <td><?= $i; ?></td>
+                <td><?= $mapel['mapel_name']; ?></td>
+                <td> ? </td>
+                <td> ? </td>
+                <td><?= $mapel['chapters']; ?></td>
+                <td> <a class="badge success" href="<?= base_url('admin/edit_mapel') ?>">Edit</a> | <a class="badge failed" href="<?= base_url('admin/delete_mapel') ?>" onclick="return confirm('Are you sure want to delete ? ');">Delete</a></td>
             </tr>
         <?php $i++;
         endforeach; ?>
