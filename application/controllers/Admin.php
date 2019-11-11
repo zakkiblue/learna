@@ -43,8 +43,23 @@ class Admin extends CI_Controller
             ];
 
             $this->db->insert('mapel', $data);
+            $id_mapel = $this->db->insert_id();
+            if ($this->input->post('mapel1') == 'Mipa') {
+                $data1 = [
+                    'role_id' => 2,
+                    'mapel_id' => $id_mapel
+                ];
+                $this->db->insert('role_mapel', $data1);
+            }
+            if ($this->input->post('mapel2') == 'Ips') {
+                $data1 = [
+                    'role_id' => 3,
+                    'mapel_id' => $id_mapel
+                ];
+                $this->db->insert('role_mapel', $data1);
+            }
             $this->session->set_flashdata('massage', '<div class="alerts success" role="alert">Mata pelajaran berhasil ditambahkan!</div>');
-            redirect('Admin/manage_mapel');
+            redirect('Admin/manage_materi');
         }
     }
 

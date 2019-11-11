@@ -124,6 +124,13 @@ div.alerts {
 		border-bottom: 5px solid #eeeeee;
 	}
 
+	input[type=checkbox] {
+		width: 20%;
+		height: 20px;
+		margin: 0px;
+		display: inline-block;
+	}
+
 	input:focus {
 		outline: none;
 	}
