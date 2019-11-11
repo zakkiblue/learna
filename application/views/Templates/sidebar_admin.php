@@ -4,7 +4,7 @@
             <img src="<?= base_url('assets/img/profile/'); ?><?= $user['image']; ?>" alt="Profile foto">
 
         </div>
-        <p><?= $user['name']; ?></p>
+        <p><?= $user['name']; ?> <?= $user['role_id']; ?></p>
         <ul>
             <a href="#" class="nav-item">
                 <li>Home</li>
