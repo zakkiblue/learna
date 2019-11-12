@@ -6,12 +6,13 @@
             <th>Mata Pelajaran</th>
 
         </tr>
-        <?php
-        foreach ($mapels as $mapel) : ?>
+        <?php $i = 1;
+        foreach ($materis as $materi) : ?>
             <tr>
-                <td><a href="<?= base_url('user_mipa/materi_list/?mapel='); ?><?= $mapel['mapel_id']; ?>"><?= $mapel['mapel_name']; ?></a></td>
+                <td><?= $materi['chapter_no']; ?></td>
+                <td><?= $materi['chapter_name']; ?></td>
             </tr>
-        <?php
+        <?php $i++;
         endforeach; ?>
     </table>
 </div>

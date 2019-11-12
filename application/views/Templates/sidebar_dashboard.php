@@ -6,10 +6,15 @@
         </div>
         <p><?= $user['name']; ?></p>
         <ul>
-            <li>Home</li>
-            <li>Profil</li>
-            <li>Raport</li>
-            <li>Bag</li>
+            <a href="#" class="nav-item">
+                <li>Home</li>
+            </a>
+            <a href="<?= base_url('user_mipa/materi/') ?>" class="nav-item">
+                <li>Materi</li>
+            </a>
+            <a href="#" class="nav-item">
+                <li>Profil</li>
+            </a>
         </ul>
         <a class="logout" href="<?= base_url(); ?>auth/logout">
             <p class="logout">Logout</p>

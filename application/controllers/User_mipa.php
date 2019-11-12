@@ -29,4 +29,15 @@ class User_mipa extends CI_Controller
         $this->load->view('user/materi', $data);
         $this->load->view('templates/footer_dashboard');
     }
+    public function materi_list()
+    {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $id_mapel = $this->input->get('mapel');
+        $data['materis'] = $this->db->get_where('materi', ['id_mapel' => $id_mapel])->result_array();
+        $data['title'] = "Siswa " . $data['user']['name'];
+        $this->load->view('templates/header_dashboard', $data);
+        $this->load->view('templates/sidebar_dashboard', $data);
+        $this->load->view('user/chapters', $data);
+        $this->load->view('templates/footer_dashboard');
+    }
 }
