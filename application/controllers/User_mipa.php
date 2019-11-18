@@ -40,4 +40,16 @@ class User_mipa extends CI_Controller
         $this->load->view('user/chapters', $data);
         $this->load->view('templates/footer_dashboard');
     }
+
+    public function materi_view()
+    {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['chapter'] = $this->db->get_where('materi', ['id' => $this->input->get('chapter')])->row_array();
+
+        $data['title'] = "Siswa " . $data['user']['name'];
+        $this->load->view('templates/header_dashboard', $data);
+        $this->load->view('templates/sidebar_dashboard', $data);
+        $this->load->view('user/chapter_view', $data);
+        $this->load->view('templates/footer_dashboard');
+    }
 }

@@ -8,10 +8,9 @@
         <input type="text" name="chapter_name" placeholder="Chapter name">
         <small class="form-error"><?= form_error('name'); ?></small>
         <select name="mapel" id="mapel" class="styled-select">
-            <option value="Matematika">Matematika</option>
-            <option value="Kimia">Kimia</option>
-            <option value="sejarah">Sejarah</option>
-            <option value="Fisika">Fisika</option>
+            <?php foreach ($mapels as $mapel) : ?>
+                <option value="<?= $mapel['mapel_name']; ?>"><?= $mapel['mapel_name']; ?></option>
+            <?php endforeach; ?>
         </select>
         <select name="chapter_no" id="chapter_no" class="styled-select">
 

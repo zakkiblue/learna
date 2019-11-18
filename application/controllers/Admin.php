@@ -66,6 +66,7 @@ class Admin extends CI_Controller
     public function input_materi()
     {
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['mapels'] = $this->db->get('mapel')->result_array();
         $data['title'] = "Input Materi";
         $this->load->library('form_validation');
         $this->form_validation->set_rules('chapter_name', 'Chapter name', 'required|trim');
