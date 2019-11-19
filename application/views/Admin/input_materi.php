@@ -22,8 +22,8 @@
         </select>
 
         <select name="type-file" id="type_file" class="styled-select">
-            <option value="pdf">PDF</option>
-            <option value="video">Video</option>
+            <option value="docs">PDF</option>
+            <option value="videos">Video</option>
         </select>
         <div class="file-materi">
             <input type="file" name="filename">

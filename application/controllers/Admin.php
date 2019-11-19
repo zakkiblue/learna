@@ -81,7 +81,7 @@ class Admin extends CI_Controller
             $upload_file = $_FILES['filename']['name'];
             $file_type = $this->input->post('type-file');
             //cek file 
-            if ($file_type == 'pdf' && $upload_file) {
+            if ($file_type == 'docs' && $upload_file) {
                 $config['allowed_types'] = 'pdf';
                 $config['max_size'] = '10240';
                 $config['upload_path'] = './assets/files/docs/';
@@ -106,7 +106,7 @@ class Admin extends CI_Controller
                     redirect('Admin/input_materi');
                 }
             }
-            if ($file_type == 'video' && $upload_file) {
+            if ($file_type == 'videos' && $upload_file) {
                 $config['allowed_types'] = 'mp4';
                 $config['max_size'] = '102400';
                 $config['upload_path'] = './assets/files/videos/';
