@@ -101,6 +101,10 @@ div.alerts {
 	background-color: red;
 }
 
+.blue {
+	background-color: lightseagreen;
+}
+
 .form-input {
 	padding: 40px;
 	background: #ffffff;
@@ -122,6 +126,10 @@ div.alerts {
 		border: none;
 		margin: 10px 0px;
 		border-bottom: 5px solid #eeeeee;
+	}
+
+	input[type=textarea] {
+		border: none;
 	}
 
 	input[type=checkbox] {

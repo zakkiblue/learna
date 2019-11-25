@@ -1,6 +1,6 @@
 <div class="main-content">
     <?= $this->session->flashdata('massage'); ?>
-    <a href="<?= base_url(); ?>/admin/manage_materi">&lt Back</a>
+    <a href="<?= base_url(); ?>admin/manage_materi">&lt Back</a>
     <h1>Tambah Mata Pelajaran</h1>
 
     <div class="form-input">

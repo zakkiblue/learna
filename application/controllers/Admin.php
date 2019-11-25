@@ -136,4 +136,72 @@ class Admin extends CI_Controller
             }
         }
     }
+    function delete_mapel()
+    {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $mapel = $this->input->get('mapel');
+        if ($data['user']['role_id'] == 1) {
+            $this->db->where('id', $mapel);
+            $this->db->delete('mapel');
+            $this->session->set_flashdata('massage', '<div class="alerts success" role="alert">File telah dihapus</div>');
+            redirect('Admin/manage_materi');
+        } else {
+            echo "gagal";
+        }
+    }
+    function input_quiz()
+    {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['title'] = "Input Kuis";
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('question', 'Question', 'required|trim');
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/header_dashboard', $data);
+            $this->load->view('templates/sidebar_admin', $data);
+            $this->load->view('admin/input_quiz', $data);
+            $this->load->view('templates/footer_dashboard');
+        } else {
+
+            $data = [
+                'mapel_name' => htmlspecialchars($this->input->post('mapel_name', true)),
+                'chapters' => htmlspecialchars($this->input->post('chapters', true)),
+                'date_created' => time()
+            ];
+
+            $this->db->insert('mapel', $data);
+            $id_mapel = $this->db->insert_id();
+            if ($this->input->post('mapel1') == 'Mipa') {
+                $data1 = [
+                    'role_id' => 2,
+                    'mapel_id' => $id_mapel
+                ];
+                $this->db->insert('role_mapel', $data1);
+            }
+            if ($this->input->post('mapel2') == 'Ips') {
+                $data1 = [
+                    'role_id' => 3,
+                    'mapel_id' => $id_mapel
+                ];
+                $this->db->insert('role_mapel', $data1);
+            }
+            $this->session->set_flashdata('massage', '<div class="alerts success" role="alert">Mata pelajaran berhasil ditambahkan!</div>');
+            redirect('Admin/manage_materi');
+        }
+    }
+    function add_quiz()
+    {
+
+        var_dump($this->input->post());
+    }
+    function quiz_for()
+    {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['materi'] = $this->db->get_where('materi', ['id_mapel' => $this->input->get('mapel')])->result_array();
+        $data['title'] = "Pilih Chapter";
+        $this->load->view('templates/header_dashboard', $data);
+        $this->load->view('templates/sidebar_admin', $data);
+        $this->load->view('admin/quiz_for', $data);
+        $this->load->view('templates/footer_dashboard');
+    }
 }
