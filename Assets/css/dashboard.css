@@ -89,6 +89,8 @@ nav li:hover {
 .main-content {
   padding-left: 50px;
   padding-top: 50px;
+  height: 100vh;
+  overflow: scroll;
 }
 
 div.alerts {
@@ -138,8 +140,17 @@ div.alerts {
   border-bottom: 5px solid #eeeeee;
 }
 
-.form-input input[type=textarea] {
-  border: none;
+.form-input textarea {
+  height: 150px;
+  padding: 12px 20px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 16px;
+  resize: none;
+  width: 100%;
 }
 
 .form-input input[type=checkbox] {

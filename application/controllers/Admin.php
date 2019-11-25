@@ -149,12 +149,45 @@ class Admin extends CI_Controller
             echo "gagal";
         }
     }
+    function naming_quiz()
+    {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['id_chapter'] = $this->input->get('chapter');
+        $chapter_id = $this->input->get('chapter');;
+        $data['title'] = "Input Kuis";
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('quiz_name', 'Nama Kuis', 'required|trim');
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/header_dashboard', $data);
+            $this->load->view('templates/sidebar_admin', $data);
+            $this->load->view('admin/naming_quiz', $data);
+            $this->load->view('templates/footer_dashboard');
+        } else {
+            $data = [
+                'quiz_name' => htmlspecialchars($this->input->post('quiz_name', true)),
+                'chapter_id' => $chapter_id,
+            ];
+
+            $this->db->insert('quiz', $data);
+            $quiz_id = $this->db->insert_id('id');
+            $this->session->set_flashdata('massage', '<div class="alerts success" role="alert">Quiz baru berhasil ditambahkan!</div>');
+            redirect('Admin/input_quiz?quiz=' . $quiz_id);
+        }
+    }
     function input_quiz()
     {
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $data['title'] = "Input Kuis";
+        $data['id_quiz'] = $this->input->get('quiz');
+        $quiz_id = $this->input->get('quiz');;
+        $data['title'] = "Input Pertanyaan";
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('question', 'Question', 'required|trim');
+
+        $this->form_validation->set_rules('question', 'Pertanyaan', 'required|trim');
+        $this->form_validation->set_rules('option1', 'Pilihan 1', 'required|trim');
+        $this->form_validation->set_rules('option2', 'Pilihan 2', 'required|trim');
+        $this->form_validation->set_rules('option3', 'Pilihan 3', 'required|trim');
+        $this->form_validation->set_rules('option4', 'Pilihan 4', 'required|trim');
+
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header_dashboard', $data);
@@ -163,30 +196,40 @@ class Admin extends CI_Controller
             $this->load->view('templates/footer_dashboard');
         } else {
 
-            $data = [
-                'mapel_name' => htmlspecialchars($this->input->post('mapel_name', true)),
-                'chapters' => htmlspecialchars($this->input->post('chapters', true)),
-                'date_created' => time()
+            $data_question = [
+                'question' => htmlspecialchars($this->input->post('question', true)),
+                'is_active' => 1,
+                'quiz_id' => $quiz_id,
             ];
+            $this->db->insert('question', $data_question);
+            $question_id = $this->db->insert_id();
 
-            $this->db->insert('mapel', $data);
-            $id_mapel = $this->db->insert_id();
-            if ($this->input->post('mapel1') == 'Mipa') {
-                $data1 = [
-                    'role_id' => 2,
-                    'mapel_id' => $id_mapel
-                ];
-                $this->db->insert('role_mapel', $data1);
-            }
-            if ($this->input->post('mapel2') == 'Ips') {
-                $data1 = [
-                    'role_id' => 3,
-                    'mapel_id' => $id_mapel
-                ];
-                $this->db->insert('role_mapel', $data1);
-            }
-            $this->session->set_flashdata('massage', '<div class="alerts success" role="alert">Mata pelajaran berhasil ditambahkan!</div>');
-            redirect('Admin/manage_materi');
+            $data1 = [
+                'answer' => htmlspecialchars($this->input->post('option1')),
+                'is_correct' => $this->input->post('option1_cek'),
+                'question_id' => $question_id
+            ];
+            $data2 = [
+                'answer' => htmlspecialchars($this->input->post('option2')),
+                'is_correct' => $this->input->post('option2_cek'),
+                'question_id' => $question_id
+            ];
+            $data3 = [
+                'answer' => htmlspecialchars($this->input->post('option3')),
+                'is_correct' => $this->input->post('option3_cek'),
+                'question_id' => $question_id
+            ];
+            $data4 = [
+                'answer' => htmlspecialchars($this->input->post('option4')),
+                'is_correct' => $this->input->post('option4_cek'),
+                'question_id' => $question_id
+            ];
+            $this->db->insert('answer', $data1);
+            $this->db->insert('answer', $data2);
+            $this->db->insert('answer', $data3);
+            $this->db->insert('answer', $data4);
+            $this->session->set_flashdata('massage', '<div class="alerts success" role="alert">Pertanyaan berhasil ditambahkan!</div>');
+            redirect('Admin/input_quiz?quiz=' . $quiz_id);
         }
     }
     function add_quiz()

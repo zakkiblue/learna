@@ -13,7 +13,7 @@
         foreach ($materi as $chapter) : ?>
             <tr>
                 <td><?= $i; ?></td>
-                <td> <a class="badge success" href="<?= base_url('admin/input_quiz'); ?>?chapter=<?= $chapter['id']; ?>"><?= $chapter['chapter_name']; ?></a></td>
+                <td> <a class="badge success" href="<?= base_url('admin/naming_quiz'); ?>?chapter=<?= $chapter['id']; ?>"><?= $chapter['chapter_name']; ?></a></td>
             </tr>
         <?php $i++;
         endforeach; ?>
