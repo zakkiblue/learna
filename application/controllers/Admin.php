@@ -31,6 +31,27 @@ class Admin extends CI_Controller
         $this->load->view('admin/manage_materi', $data);
         $this->load->view('templates/footer_dashboard');
     }
+    public function manage_quiz()
+    {
+        $data['user'] = $this->user_data;
+        $data['mapels'] = $this->db->get('mapel')->result_array();
+        $data['title'] = "Admin " . $data['user']['name'];
+        $this->load->view('templates/header_dashboard', $data);
+        $this->load->view('templates/sidebar_admin', $data);
+        $this->load->view('admin/manage_quiz', $data);
+        $this->load->view('templates/footer_dashboard');
+    }
+    public function quiz_list()
+    {
+        $data['user'] = $this->user_data;
+        $data['chapter'] = $this->db->get_where('materi', ['id_mapel' => $this->input->get('mapel')])->result_array();
+        $data['mapel'] = $this->db->get_where('mapel', ['id' => $this->input->get('mapel')])->row_array();
+        $data['title'] = "Quiz " . $data['user']['name'];
+        $this->load->view('templates/header_dashboard', $data);
+        $this->load->view('templates/sidebar_admin', $data);
+        $this->load->view('admin/quiz_list', $data);
+        $this->load->view('templates/footer_dashboard');
+    }
     public function add_mapel()
     {
         $data['user'] = $this->user_data;
@@ -161,7 +182,7 @@ class Admin extends CI_Controller
     {
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['id_chapter'] = $this->input->get('chapter');
-        $chapter_id = $this->input->get('chapter');;
+        $chapter_id = $this->input->get('chapter');
         $data['title'] = "Input Kuis";
         $this->load->library('form_validation');
         $this->form_validation->set_rules('quiz_name', 'Nama Kuis', 'required|trim');

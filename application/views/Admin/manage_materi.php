@@ -22,6 +22,7 @@
                 <td> ? </td>
                 <td><?= $mapel['chapters']; ?></td>
                 <td> <a class="badge success" href="<?= base_url('admin/edit_mapel') ?>">Edit</a> | <a class="badge failed" href="<?= base_url('admin/delete_mapel') ?>?mapel=<?= $mapel['id']; ?>" onclick="return confirm('Are you sure want to delete ? ');">Delete</a> | <a class="badge blue" href="<?= base_url('admin/quiz_for'); ?>?mapel=<?= $mapel['id']; ?>">Input Kuis</a></td>
+
             </tr>
         <?php $i++;
         endforeach; ?>

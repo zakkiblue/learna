@@ -18,8 +18,8 @@
             <a href="#" class="nav-item">
                 <li>Monitor Siswa</li>
             </a>
-            <a href="<?= base_url('admin/input_kuis/') ?>" class="nav-item">
-                <li>Input Kuis</li>
+            <a href="<?= base_url('admin/manage_quiz/') ?>" class="nav-item">
+                <li>Manage Kuis</li>
             </a>
         </ul>
         <a class="logout" href="<?= base_url(); ?>auth/logout">
