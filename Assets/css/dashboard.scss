@@ -80,6 +80,7 @@ nav {
 .main-content {
 	padding-left: 50px;
 	padding-top: 50px;
+	width: calc(100vw - 300px);
 	height: 100vh;
 	overflow: scroll;
 }
