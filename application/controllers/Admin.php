@@ -3,11 +3,19 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Admin extends CI_Controller
 {
-
+    private $user_data = null;
+    public function __construct()
+    {
+        parent::__construct();
+        $this->user_data = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        if ($this->user_data['role_id'] != 1) {
+            $this->session->set_flashdata('massage', '<div class="alerts failed" role="alert">Anda tidak memiliki akses!!</div>');
+            redirect('user_mipa');
+        }
+    }
     public function index()
     {
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $data['title'] = "Admin " . $data['user']['name'];
+        $data['title'] = "Admin " . $this->user_data['name'];
         $this->load->view('templates/header_dashboard', $data);
         $this->load->view('templates/sidebar_admin', $data);
         $this->load->view('admin/index', $data);
@@ -15,7 +23,7 @@ class Admin extends CI_Controller
     }
     public function manage_materi()
     {
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->user_data;
         $data['mapels'] = $this->db->get('mapel')->result_array();
         $data['title'] = "Admin " . $data['user']['name'];
         $this->load->view('templates/header_dashboard', $data);
@@ -25,7 +33,7 @@ class Admin extends CI_Controller
     }
     public function add_mapel()
     {
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->user_data;
         $data['title'] = "Tambah Mata Pelajaran";
         $this->load->library('form_validation');
         $this->form_validation->set_rules('mapel_name', 'Mata pelajaran', 'required|trim');
