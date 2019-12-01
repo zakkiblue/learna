@@ -1,6 +1,7 @@
 <div class="main-content">
     <?= $this->session->flashdata('massage'); ?>
     <h1>Quiz </h1>
+    <a href="<?= base_url(); ?>admin/input_quiz?quiz=<?= $_GET['quiz']; ?>" class="button">Tambah pertanyaan <?= $_GET['quiz']; ?></a>
 
     <table class="table">
         <tr>

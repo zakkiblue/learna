@@ -201,7 +201,7 @@ class Admin extends CI_Controller
             $this->db->insert('quiz', $data);
             $quiz_id = $this->db->insert_id('id');
             $this->session->set_flashdata('massage', '<div class="alerts success" role="alert">Quiz baru berhasil ditambahkan!</div>');
-            redirect('Admin/input_quiz?quiz=' . $quiz_id);
+            redirect('Admin/see_quiz?chapter=' . $chapter_id);
         }
     }
     function input_quiz()
@@ -259,7 +259,7 @@ class Admin extends CI_Controller
             $this->db->insert('answer', $data3);
             $this->db->insert('answer', $data4);
             $this->session->set_flashdata('massage', '<div class="alerts success" role="alert">Pertanyaan berhasil ditambahkan!</div>');
-            redirect('Admin/input_quiz?quiz=' . $quiz_id);
+            redirect('Admin/see_question?quiz=' . $quiz_id);
         }
     }
     function add_quiz()
