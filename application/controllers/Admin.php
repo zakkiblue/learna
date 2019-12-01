@@ -10,11 +10,12 @@ class Admin extends CI_Controller
         $this->user_data = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         if ($this->user_data['role_id'] != 1) {
             $this->session->set_flashdata('massage', '<div class="alerts failed" role="alert">Anda tidak memiliki akses!!</div>');
-            redirect('user_mipa');
+            redirect('Auth');
         }
     }
     public function index()
     {
+        $data['user'] = $this->user_data;
         $data['title'] = "Admin " . $this->user_data['name'];
         $this->load->view('templates/header_dashboard', $data);
         $this->load->view('templates/sidebar_admin', $data);

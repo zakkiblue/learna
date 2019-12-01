@@ -7,6 +7,14 @@ class Auth extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        if (null !== $this->session->userdata('email')) {
+            if ($this->session->userdata('role_id') == 1) {
+                redirect('admin');
+            } elseif ($this->session->userdata('role_id') == 2 || $this->session->userdata('role_id') == 3) {
+
+                redirect('user_mipa');
+            }
+        }
         $this->load->library('form_validation');
     }
 

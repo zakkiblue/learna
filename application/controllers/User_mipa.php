@@ -3,6 +3,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class User_mipa extends CI_Controller
 {
+    private $user_data = null;
+    public function __construct()
+    {
+        parent::__construct();
+        $this->user_data = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        if ($this->user_data['role_id'] != 2 || $this->user_data['role_id'] != 3) {
+            $this->session->set_flashdata('massage', '<div class="alerts failed" role="alert">Anda tidak memiliki akses!!</div>');
+            redirect('Auth');
+        }
+    }
 
     public function index()
     {
