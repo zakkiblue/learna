@@ -294,7 +294,40 @@ class Admin extends CI_Controller
         $data['title'] = "Pilih Quiz";
         $this->load->view('templates/header_dashboard', $data);
         $this->load->view('templates/sidebar_admin', $data);
-        $this->load->view('admin/see_quiz', $data);
+        $this->load->view('admin/quiz_list', $data);
+        $this->load->view('templates/footer_dashboard');
+    }
+    function see_question()
+    {
+        $data['user'] = $this->user_data;
+        $data['questions'] = $this->db->get_where('question', ['quiz_id' => $this->input->get('quiz')])->result_array();
+        $data['title'] = "Qusetion List";
+        $this->load->view('templates/header_dashboard', $data);
+        $this->load->view('templates/sidebar_admin', $data);
+        $this->load->view('admin/question_list', $data);
+        $this->load->view('templates/footer_dashboard');
+    }
+    function delete_question()
+    {
+        $question = $this->input->get('question');
+        $quiz = $this->input->get('quiz');
+        $this->db->where('id', $question);
+        $this->db->delete('question');
+        //delete answer
+        $this->db->where('question_id', $question);
+        $this->db->delete('answer');
+
+        $this->session->set_flashdata('massage', '<div class="alerts success" role="alert">Pertanyaan telah dihapus</div>');
+        redirect('Admin/see_question?quiz=' . $quiz);
+    }
+    function answer_list()
+    {
+        $data['user'] = $this->user_data;
+        $data['answers'] = $this->db->get_where('answer', ['question_id' => $this->input->get('question')])->result_array();
+        $data['title'] = "Answer List";
+        $this->load->view('templates/header_dashboard', $data);
+        $this->load->view('templates/sidebar_admin', $data);
+        $this->load->view('admin/answer_list', $data);
         $this->load->view('templates/footer_dashboard');
     }
 }

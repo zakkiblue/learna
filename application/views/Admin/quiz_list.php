@@ -1,17 +1,19 @@
 <div class="main-content">
     <?= $this->session->flashdata('massage'); ?>
-    <h1>List Chapter <?= $mapel['mapel_name'] ?></h1>
+    <h1>Chapter </h1>
 
     <table class="table">
         <tr>
             <th class="numb">#</th>
-            <th>Chapter Name</th>
+            <th>Quiz Name</th>
+            <th>Action</th>
         </tr>
         <?php $i = 1;
-        foreach ($chapter as $materi) : ?>
+        foreach ($quiz as $kuis) : ?>
             <tr>
                 <td><?= $i; ?></td>
-                <td><a class="badge" href="<?= base_url('admin/chapter_quiz'); ?>?chapter=<?= $materi['id']; ?>"><?= $materi['chapter_name']; ?></a></td>
+                <td><a class="badge" href="#"><?= $kuis['quiz_name']; ?></a></td>
+                <td><a class="badge success" href="<?= base_url(); ?>admin/see_question?quiz=<?= $kuis['id']; ?>">Lihat</a> | <a class="badge failed" href="#">Hapus</a></td>
             </tr>
         <?php $i++;
         endforeach; ?>
