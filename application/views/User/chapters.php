@@ -16,7 +16,7 @@
                 <td><?= $materi['chapter_no']; ?></td>
                 <td><?= $materi['chapter_name']; ?></td>
                 <td><?= $materi['file_type']; ?></td>
-                <td><a class="badge success" href="<?= base_url('user_mipa/materi_view/?chapter='); ?><?= $materi['id']; ?>">Open</a></td>
+                <td><a class="badge success" href="<?= base_url('user_mipa/materi_view/?chapter='); ?><?= $materi['id']; ?>">Open</a> | <a class="badge blue" href="<?= base_url('user_mipa/quiz_list/?chapter='); ?><?= $materi['id']; ?>">Quiz</a></td>
             </tr>
 
 
