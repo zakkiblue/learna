@@ -22,7 +22,7 @@
                 <li>Manage Kuis</li>
             </a>
         </ul>
-        <a class="logout" href="<?= base_url(); ?>auth/logout">
+        <a class="logout" href="<?= base_url(); ?>logout">
             <p class="logout">Logout</p>
         </a>
     </nav>

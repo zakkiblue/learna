@@ -8,7 +8,7 @@ class User_mipa extends CI_Controller
     {
         parent::__construct();
         $this->user_data = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        if ($this->user_data['role_id'] != 2 || $this->user_data['role_id'] != 3) {
+        if ($this->user_data['role_id'] != 2 && $this->user_data['role_id'] != 3) {
             $this->session->set_flashdata('massage', '<div class="alerts failed" role="alert">Anda tidak memiliki akses!!</div>');
             redirect('Auth');
         }
