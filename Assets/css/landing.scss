@@ -1,0 +1,194 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
+header {
+    display: flex;
+    width: 80%;
+    margin: auto;
+    height: 10vh;
+    align-items: center;
+}
+
+.logo-container,
+.nav-links,
+.cart {
+    display: flex;
+}
+
+.logo-container {
+
+    flex: 1;
+}
+
+.logo {
+    font-weight: 400px;
+    margin: 5px;
+}
+
+nav {
+    flex: 2;
+}
+
+.nav-links {
+    justify-content: space-around;
+    list-style: none;
+}
+
+.nav-link {
+    color: #5f5f79;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.cart {
+
+    flex: 1;
+    justify-content: flex-end;
+}
+
+.presentation {
+    display: flex;
+    width: 80%;
+    margin: auto;
+    align-items: center;
+    min-height: 80vh;
+}
+
+.introduction {
+    flex: 2;
+}
+
+.intro-text h1 {
+    font-size: 44px;
+    font-weight: 500;
+    background: linear-gradient(to right, #494964, #6f6f89);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+}
+
+.intro-text p {
+    margin-top: 5px;
+    font-size: 22px;
+    color: #585772;
+}
+
+.cta {
+    padding-top: 50px;
+}
+
+.cta-select {
+    border: 2px solid #c36cbb;
+    background: transparent;
+    color: #c36cbb;
+    width: 150px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.cta-add {
+    border: none;
+    background: #c36cbb;
+    color: #ffffff;
+    width: 150px;
+    height: 50px;
+    cursor: pointer;
+    margin: 10px 0 0 10px;
+}
+
+.cover {
+    flex: 1;
+    height: 50vh;
+    justify-content: flex-end;
+    animation: drop 1.5s ease;
+}
+
+.cover img {
+    height: 100%;
+}
+
+.big-eclipse {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    height: 70%;
+    z-index: -1;
+    opacity: 0.6;
+}
+
+.mid-eclipse {
+    position: absolute;
+    top: 35%;
+    right: 35%;
+    height: 50%;
+    z-index: -1;
+    opacity: 0.6;
+}
+
+.small-eclipse {
+    position: absolute;
+    bottom: 0;
+    right: 60%;
+    height: 30%;
+    z-index: -1;
+}
+
+@keyframes drop {
+    0% {
+        opacity: 0;
+        transform: translateY(-80px)
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0px)
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .presentation {
+        flex-direction: column;
+    }
+
+    .introduction {
+        margin-top: 5vh;
+        text-align: center;
+    }
+
+    .intro-text h1 {
+        font-size: 30px;
+    }
+
+    .intro-text p {
+        font-size: 14px;
+    }
+
+    .cta-add,
+    .cta-select,
+    .cover {
+        transform: scale(0.8);
+    }
+
+    .logo {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .cta-add {
+        margin: 0px;
+    }
+
+    .nav-link {
+        font-size: 14px;
+
+    }
+}

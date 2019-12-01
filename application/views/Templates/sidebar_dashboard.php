@@ -19,7 +19,7 @@
                 <li>Raport</li>
             </a>
         </ul>
-        <a class="logout" href="<?= base_url(); ?>logout">
+        <a class="logout" href="<?= base_url('auth'); ?>logout">
             <p class="logout">Logout</p>
         </a>
     </nav>
