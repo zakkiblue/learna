@@ -8,6 +8,7 @@ class User_mipa extends CI_Controller
     {
         parent::__construct();
         $this->user_data = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $this->load->library('form_validation');
         if ($this->user_data['role_id'] != 2 && $this->user_data['role_id'] != 3) {
             $this->session->set_flashdata('massage', '<div class="alerts failed" role="alert">Anda tidak memiliki akses!!</div>');
             redirect('Auth');
@@ -186,5 +187,44 @@ class User_mipa extends CI_Controller
         $this->load->view('templates/sidebar_dashboard', $data);
         $this->load->view('user/quiz_result', $data);
         $this->load->view('templates/footer_dashboard');
+    }
+    public function profil()
+    {
+        $data['user'] = $this->user_data;
+        $data['title'] = "Edit Profil";
+
+        $this->form_validation->set_rules('name', 'Full name', 'required|trim');
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/header_dashboard', $data);
+            $this->load->view('templates/sidebar_dashboard', $data);
+            $this->load->view('user/profil', $data);
+            $this->load->view('templates/footer_dashboard');
+        } else {
+            $name = $this->input->post('name');
+            $email = $this->input->post('email');
+
+            $upload_image = $_FILES['image']['name'];
+            if ($upload_image) {
+                $config['allowed_types'] = 'jpg|jpeg|png';
+                $config['max_size'] = '12048';
+                $config['upload_path'] = './assets/img/profile/';
+                $this->load->library('upload', $config);
+                if ($this->upload->do_upload('image')) {
+                    $new_image = $this->upload->data('file_name');
+                    $this->db->set('image', $new_image);
+                } else {
+                    $error = $this->upload->display_errors();
+                    $this->session->set_flashdata('massage', '<div class="alerts failed" role="alert">' . $error . '</div>');
+                    redirect('User_mipa/profil');
+                }
+            }
+            $this->db->set('name', $name);
+            $this->db->where('email', $email);
+            $this->db->update('user');
+
+            $this->session->set_flashdata('massage', '<div class="alerts success" role="alert">Profil berhasil diedit!</div>');
+            redirect('User_mipa/profil');
+        }
     }
 }
