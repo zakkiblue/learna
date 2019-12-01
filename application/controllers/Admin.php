@@ -95,7 +95,7 @@ class Admin extends CI_Controller
 
     public function input_materi()
     {
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->user_data;
         $data['mapels'] = $this->db->get('mapel')->result_array();
         $data['title'] = "Input Materi";
         $this->load->library('form_validation');
@@ -168,7 +168,7 @@ class Admin extends CI_Controller
     }
     function delete_mapel()
     {
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->user_data;
         $mapel = $this->input->get('mapel');
         if ($data['user']['role_id'] == 1) {
             $this->db->where('id', $mapel);
@@ -181,7 +181,7 @@ class Admin extends CI_Controller
     }
     function naming_quiz()
     {
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->user_data;
         $data['id_chapter'] = $this->input->get('chapter');
         $chapter_id = $this->input->get('chapter');
         $data['title'] = "Input Kuis";
@@ -206,7 +206,7 @@ class Admin extends CI_Controller
     }
     function input_quiz()
     {
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->user_data;
         $data['id_quiz'] = $this->input->get('quiz');
         $quiz_id = $this->input->get('quiz');;
         $data['title'] = "Input Pertanyaan";
@@ -269,12 +269,32 @@ class Admin extends CI_Controller
     }
     function quiz_for()
     {
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $this->user_data;
         $data['materi'] = $this->db->get_where('materi', ['id_mapel' => $this->input->get('mapel')])->result_array();
         $data['title'] = "Pilih Chapter";
         $this->load->view('templates/header_dashboard', $data);
         $this->load->view('templates/sidebar_admin', $data);
         $this->load->view('admin/quiz_for', $data);
+        $this->load->view('templates/footer_dashboard');
+    }
+    function see_quiz_for()
+    {
+        $data['user'] = $this->user_data;
+        $data['materi'] = $this->db->get_where('materi', ['id_mapel' => $this->input->get('mapel')])->result_array();
+        $data['title'] = "Pilih Chapter";
+        $this->load->view('templates/header_dashboard', $data);
+        $this->load->view('templates/sidebar_admin', $data);
+        $this->load->view('admin/see_quiz_for', $data);
+        $this->load->view('templates/footer_dashboard');
+    }
+    function see_quiz()
+    {
+        $data['user'] = $this->user_data;
+        $data['quiz'] = $this->db->get_where('quiz', ['chapter_id' => $this->input->get('chapter')])->result_array();
+        $data['title'] = "Pilih Quiz";
+        $this->load->view('templates/header_dashboard', $data);
+        $this->load->view('templates/sidebar_admin', $data);
+        $this->load->view('admin/see_quiz', $data);
         $this->load->view('templates/footer_dashboard');
     }
 }

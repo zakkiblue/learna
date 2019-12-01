@@ -9,9 +9,10 @@ class Auth extends CI_Controller
         parent::__construct();
         if (null !== $this->session->userdata('email')) {
             if ($this->session->userdata('role_id') == 1) {
+                $this->session->set_flashdata('massage', '<div class="alerts failed" role="alert">Anda tidak memiliki akses!!</div>');
                 redirect('admin');
             } elseif ($this->session->userdata('role_id') == 2 || $this->session->userdata('role_id') == 3) {
-
+                $this->session->set_flashdata('massage', '<div class="alerts failed" role="alert">Anda tidak memiliki akses!!</div>');
                 redirect('user_mipa');
             }
         }

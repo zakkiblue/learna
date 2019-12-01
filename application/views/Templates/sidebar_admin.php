@@ -6,16 +6,16 @@
         </div>
         <p><?= $user['name']; ?> <?= $user['role_id']; ?></p>
         <ul>
-            <a href="#" class="nav-item">
+            <a href="<?= base_url('admin') ?>" class="nav-item">
                 <li>Home</li>
             </a>
-            <a href="#" class="nav-item">
+            <a href="<?= base_url('admin/profil/') ?>" class="nav-item">
                 <li>Profil</li>
             </a>
             <a href="<?= base_url('admin/manage_materi/') ?>" class="nav-item">
                 <li>Manage Materi</li>
             </a>
-            <a href="#" class="nav-item">
+            <a href="<?= base_url('admin/monitor_siswa/') ?>" class="nav-item">
                 <li>Monitor Siswa</li>
             </a>
             <a href="<?= base_url('admin/manage_quiz/') ?>" class="nav-item">
