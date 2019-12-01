@@ -2,7 +2,7 @@
     <?= $this->session->flashdata('massage'); ?>
     <h1><?= $siswa['name']; ?> </h1>
     <div class="foto-profil" style="border: 1px solid #eee; margin-top: 20px;margin-left:0px;">
-        <img src="<?= base_url('assets/img/profile/'); ?><?= $user['image']; ?>" alt="Profile foto">
+        <img src="<?= base_url('assets/img/profile/'); ?><?= $siswa['image']; ?>" alt="Profile foto">
     </div>
     <table class="table">
         <tr>
