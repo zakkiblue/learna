@@ -16,6 +16,6 @@
         <hr>
     <?php $i++; endforeach; ?>
     <input type="hidden" name="max" value="<?= $i-1; ?>">
-    <button type="submit">Selesai</button>
+    <button type="submit" style="padding: 10px; background:#71C9CE; margin-top:40px;">Selesai</button>
     </form>
 </div>

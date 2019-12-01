@@ -301,7 +301,7 @@ class Admin extends CI_Controller
     {
         $data['user'] = $this->user_data;
         $data['questions'] = $this->db->get_where('question', ['quiz_id' => $this->input->get('quiz')])->result_array();
-        $data['title'] = "Qusetion List";
+        $data['title'] = "Question List";
         $this->load->view('templates/header_dashboard', $data);
         $this->load->view('templates/sidebar_admin', $data);
         $this->load->view('admin/question_list', $data);
@@ -320,7 +320,7 @@ class Admin extends CI_Controller
         $this->session->set_flashdata('massage', '<div class="alerts success" role="alert">Pertanyaan telah dihapus</div>');
         redirect('Admin/see_question?quiz=' . $quiz);
     }
-    function answer_list()
+    public function answer_list()
     {
         $data['user'] = $this->user_data;
         $data['answers'] = $this->db->get_where('answer', ['question_id' => $this->input->get('question')])->result_array();
@@ -328,6 +328,73 @@ class Admin extends CI_Controller
         $this->load->view('templates/header_dashboard', $data);
         $this->load->view('templates/sidebar_admin', $data);
         $this->load->view('admin/answer_list', $data);
+        $this->load->view('templates/footer_dashboard');
+    }
+    public function monitor_siswa()
+    {
+        $data['user'] = $this->user_data;
+        $this->db->select('id,name,email');
+        $this->db->from('user');
+        $this->db->where('role_id', 2);
+        $this->db->or_where('role_id', 3);
+        $data['siswa'] = $this->db->get()->result_array();
+        // var_dump($data['siswa']);
+        // die;
+
+        $data['title'] = "List Siswa";
+        $this->load->view('templates/header_dashboard', $data);
+        $this->load->view('templates/sidebar_admin', $data);
+        $this->load->view('admin/monitor_siswa', $data);
+        $this->load->view('templates/footer_dashboard');
+    }
+    public function murid()
+    {
+        $data['user'] = $this->user_data;
+        $jurusan = $this->input->get('jurusan');
+        $this->db->select('id,name,email');
+        $this->db->from('user');
+        $this->db->where('role_id', $jurusan);
+        $data['siswa'] = $this->db->get()->result_array();
+        // var_dump($data['siswa']);
+        // die;
+
+        $data['title'] = "List Siswa";
+        $this->load->view('templates/header_dashboard', $data);
+        $this->load->view('templates/sidebar_admin', $data);
+        $this->load->view('admin/monitor_siswa', $data);
+        $this->load->view('templates/footer_dashboard');
+    }
+    public function detail_siswa()
+    {
+        $data['user'] = $this->user_data;
+        $id = $this->input->get('siswa');
+        $this->db->select('*');
+        $this->db->from('user');
+        $this->db->where('id', $id);
+        $data['siswa'] = $this->db->get()->row_array();
+        // var_dump($data['siswa']);
+        // die;
+        $this->db->select('*');
+        $this->db->from('exam');
+        $this->db->join('quiz', 'quiz.id=exam.quiz_id');
+        $this->db->join('materi', 'quiz.chapter_id=materi.id');
+        $this->db->join('mapel', 'mapel.id=materi.id_mapel');
+        $this->db->where('exam.user_id', $id);
+        $data['rekap'] = $this->db->get()->result_array();
+        // 
+        $data['title'] = "Detail Siswa";
+        $this->load->view('templates/header_dashboard', $data);
+        $this->load->view('templates/sidebar_admin', $data);
+        $this->load->view('admin/detail_siswa', $data);
+        $this->load->view('templates/footer_dashboard');
+    }
+    public function profil()
+    {
+        $data['user'] = $this->user_data;
+        $data['title'] = "Detail Siswa";
+        $this->load->view('templates/header_dashboard', $data);
+        $this->load->view('templates/sidebar_admin', $data);
+        $this->load->view('admin/detail_siswa', $data);
         $this->load->view('templates/footer_dashboard');
     }
 }
