@@ -8,8 +8,6 @@
         <tr>
             <th class="numb">#</th>
             <th>Mata Pelajaran</th>
-            <th>Mipa</th>
-            <th>Ips</th>
             <th>Banyak chapter</th>
             <th>Action</th>
         </tr>
@@ -18,10 +16,8 @@
             <tr>
                 <td><?= $i; ?></td>
                 <td><?= $mapel['mapel_name']; ?></td>
-                <td> ? </td>
-                <td> ? </td>
                 <td><?= $mapel['chapters']; ?></td>
-                <td> <a class="badge success" href="<?= base_url('admin/edit_mapel') ?>">Edit</a> | <a class="badge failed" href="<?= base_url('admin/delete_mapel') ?>?mapel=<?= $mapel['id']; ?>" onclick="return confirm('Are you sure want to delete ? ');">Delete</a> | <a class="badge blue" href="<?= base_url('admin/quiz_for'); ?>?mapel=<?= $mapel['id']; ?>">Input Kuis</a></td>
+                <td> <a class="badge success" href="<?= base_url('admin/materi_list?mapel=') ?><?= $mapel['id']; ?>">Buka</a> | <a class="badge failed" href="<?= base_url('admin/delete_mapel') ?>?mapel=<?= $mapel['id']; ?>" onclick="return confirm('Are you sure want to delete ? Semua data tentang mata pelajaran dan materi yang tekait akan ikut terhapus');">Delete</a> | <a class="badge blue" href="<?= base_url('admin/quiz_for'); ?>?mapel=<?= $mapel['id']; ?>">Input Kuis</a></td>
 
             </tr>
         <?php $i++;

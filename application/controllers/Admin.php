@@ -177,7 +177,8 @@ class Admin extends CI_Controller
             $this->session->set_flashdata('massage', '<div class="alerts success" role="alert">File telah dihapus</div>');
             redirect('Admin/manage_materi');
         } else {
-            echo "gagal";
+            $this->session->set_flashdata('massage', '<div class="alerts failed" role="alert">File gagal dihapus</div>');
+            redirect('Admin/manage_materi');
         }
     }
     function naming_quiz()
@@ -308,7 +309,7 @@ class Admin extends CI_Controller
         $this->load->view('admin/question_list', $data);
         $this->load->view('templates/footer_dashboard');
     }
-    function delete_question()
+    public function delete_question()
     {
         $question = $this->input->get('question');
         $quiz = $this->input->get('quiz');
@@ -427,5 +428,35 @@ class Admin extends CI_Controller
             $this->session->set_flashdata('massage', '<div class="alerts success" role="alert">Profil berhasil diedit!</div>');
             redirect('Admin/profil');
         }
+    }
+    public function materi_list()
+    {
+        $data['user'] = $this->user_data;
+        $id_mapel = $this->input->get('mapel');
+        $mapel = $this->db->get_where('mapel', ['id' => $id_mapel])->row_array();
+        $data['materis'] = $this->db->get_where('materi', ['id_mapel' => $id_mapel])->result_array();
+        $data['title'] = $mapel['mapel_name'];
+        $this->load->view('templates/header_dashboard', $data);
+        $this->load->view('templates/sidebar_admin', $data);
+        $this->load->view('admin/chapters', $data);
+        $this->load->view('templates/footer_dashboard');
+    }
+    public function delete_materi()
+    {
+        $materi = $this->input->get('materi');
+        $mapel = $this->input->get('mapel');
+        $this->db->from('materi');
+        $this->db->join('quiz', 'materi.id=quiz.chapter_id');
+        $this->db->join('question', 'quiz.id=question.quiz_id');
+        $this->db->join('answer', 'question.id=answer.question_id');
+        $this->db->join('exam', 'quiz.id=exam.quiz_id');
+        $this->db->where('materi.id', $materi);
+        $this->db->delete('materi');
+        // //delete answer
+        // $this->db->where('question_id', $question);
+        // $this->db->delete('answer');
+
+        $this->session->set_flashdata('massage', '<div class="alerts success" role="alert">Pertanyaan telah dihapus</div>');
+        redirect('Admin/materi_list?mapel=' . $mapel);
     }
 }
