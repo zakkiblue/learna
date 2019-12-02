@@ -367,10 +367,25 @@ class Admin extends CI_Controller
     public function murid()
     {
         $data['user'] = $this->user_data;
-        $jurusan = $this->input->get('jurusan');
+        $jurusan = $this->uri->segment(3);
         $this->db->select('id,name,email');
         $this->db->from('user');
         $this->db->where('role_id', $jurusan);
+        $total = $this->db->get()->num_rows();
+        // var_dump($data['siswa']);
+        // die;
+        $config['base_url'] = 'http://localhost/Learn/admin/murid/' . $jurusan;
+        $config['total_rows'] = $total;
+        $config['per_page'] = 10;
+        $config['full_tag_open'] = '<div class="paginations">';
+        $config['full_tag_close'] = '</div>';
+        $data['start'] = $this->uri->segment(4);
+        $this->pagination->initialize($config);
+        // get data
+        $this->db->select('id,name,email');
+        $this->db->from('user');
+        $this->db->where('role_id', $jurusan);
+        $this->db->limit($config['per_page'], $data['start']);
         $data['siswa'] = $this->db->get()->result_array();
         // var_dump($data['siswa']);
         // die;
