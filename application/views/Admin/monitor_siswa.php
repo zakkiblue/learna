@@ -14,11 +14,12 @@
         <?php $i = 1;
         foreach ($siswa as $murid) : ?>
             <tr>
-                <td><?= $i; ?></td>
+                <td><?= ++$start; ?></td>
                 <td><a class="badge" href="<?= base_url('admin/detail_siswa'); ?>?siswa=<?= $murid['id']; ?>"><?= $murid['name']; ?></a></td>
                 <td><?= $murid['email']; ?></td>
             </tr>
-        <?php $i++;
+        <?php
         endforeach; ?>
     </table>
+    <?= $this->pagination->create_links(); ?>
 </div>

@@ -266,4 +266,14 @@ a {
   padding: 4px;
   border-radius: 10%;
 }
+
+.paginations {
+  margin-top: 10px;
+}
+
+.paginations a {
+  text-decoration: none;
+  padding: 5px;
+  margin: 5px;
+}
 /*# sourceMappingURL=dashboard.css.map */

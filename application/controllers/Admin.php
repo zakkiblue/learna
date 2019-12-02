@@ -9,6 +9,7 @@ class Admin extends CI_Controller
         parent::__construct();
         $this->user_data = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $this->load->library('form_validation');
+        $this->load->library('pagination');
         if ($this->user_data['role_id'] != 1) {
             $this->session->set_flashdata('massage', '<div class="alerts failed" role="alert">Anda tidak memiliki akses!!</div>');
             redirect('Auth');
@@ -335,14 +336,28 @@ class Admin extends CI_Controller
     public function monitor_siswa()
     {
         $data['user'] = $this->user_data;
+
         $this->db->select('id,name,email');
         $this->db->from('user');
         $this->db->where('role_id', 2);
         $this->db->or_where('role_id', 3);
-        $data['siswa'] = $this->db->get()->result_array();
+        $total = $this->db->get()->num_rows();
         // var_dump($data['siswa']);
         // die;
-
+        $config['base_url'] = 'http://localhost/Learn/admin/monitor_siswa';
+        $config['total_rows'] = $total;
+        $config['per_page'] = 10;
+        $config['full_tag_open'] = '<div class="paginations">';
+        $config['full_tag_close'] = '</div>';
+        $data['start'] = $this->uri->segment(3);
+        $this->pagination->initialize($config);
+        // get data
+        $this->db->select('id,name,email');
+        $this->db->from('user');
+        $this->db->where('role_id', 2);
+        $this->db->or_where('role_id', 3);
+        $this->db->limit($config['per_page'], $data['start']);
+        $data['siswa'] = $this->db->get()->result_array();
         $data['title'] = "List Siswa";
         $this->load->view('templates/header_dashboard', $data);
         $this->load->view('templates/sidebar_admin', $data);
@@ -458,5 +473,36 @@ class Admin extends CI_Controller
 
         $this->session->set_flashdata('massage', '<div class="alerts success" role="alert">Pertanyaan telah dihapus</div>');
         redirect('Admin/materi_list?mapel=' . $mapel);
+    }
+    public function add_admin()
+    {
+        $data['user'] = $this->user_data;
+        $data['title'] = "Tambah Admin";
+        $this->form_validation->set_rules('name', 'Name', 'required|trim');
+        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]');
+        $this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[4]|matches[password2]');
+        $this->form_validation->set_rules('password2', 'Password', 'required|trim|matches[password1]');
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/header_dashboard', $data);
+            $this->load->view('templates/sidebar_admin', $data);
+            $this->load->view('admin/add_admin', $data);
+            $this->load->view('templates/footer_dashboard');
+        } else {
+
+            $data = [
+                'name' => htmlspecialchars($this->input->post('name', true)),
+                'email' => htmlspecialchars($this->input->post('email', true)),
+                'image' => 'default.jpg',
+                'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
+                'role_id' => 1,
+                'is_active' => 1,
+                'date_created' => time()
+            ];
+
+            $this->db->insert('user', $data);
+            $this->session->set_flashdata('massage', '<div class="alerts success" role="alert">Registrasi berhasil</div>');
+            redirect('Admin/profil');
+        }
     }
 }

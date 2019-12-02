@@ -1,5 +1,6 @@
 <div class="main-content">
     <?= $this->session->flashdata('massage'); ?>
+    <a href="<?= base_url(); ?>admin/add_admin" class="button">Tambah Admin</a>
     <h1><?= $user['name']; ?> </h1>
     <div class="form-input" style="font-size:20px;">
         <?= form_open_multipart('admin/profil'); ?>
