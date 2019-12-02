@@ -19,8 +19,8 @@
         <nav>
             <ul class="nav-links">
                 <li><a class="nav-link" href="#">Home</a></li>
-                <li><a class="nav-link" href="#">About</a></li>
-                <li><a class="nav-link" href="#">Fa'Q</a></li>
+                <li><a class="nav-link" href="#about">About</a></li>
+
             </ul>
         </nav>
 
@@ -49,11 +49,7 @@
             </div>
             <div class="text">
                 <h2>About</h2>
-                <div>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sit nemo amet dicta nobis rerum, delectus, animi rem odio cupiditate laboriosam placeat perferendis quisquam voluptatibus consequatur neque modi voluptatum, suscipit dolorum?
-                    Reiciendis, illo, vitae voluptatibus error tenetur autem eaque sapiente, deserunt porro quae nihil ipsa culpa magnam aliquam sequi magni ratione esse eius nam. Quisquam, mollitia inventore repellat est enim assumenda?
-                    Quisquam id culpa sint eaque. Adipisci, ducimus id! Aliquid ea nam numquam officia, facere eveniet quae soluta dolore architecto modi incidunt aperiam corrupti quaerat totam! Inventore aperiam similique voluptatem aut.
-                    Unde quisquam, debitis vero ut, aliquam neque vitae libero voluptates ipsum ad veritatis iusto culpa minima assumenda atque, architecto laborum? Nam consequatur excepturi unde sit facilis commodi adipisci amet qui.
-                    Sint officiis deserunt natus quo doloribus ad quis quisquam dolorum ipsam nemo modi reiciendis, consequatur sapiente, quam id culpa. Vel dicta, iure illo quibusdam assumenda laborum fuga laboriosam quae eum.</div>
+                <div>LearnA merupakan platform e-learning protoype yang ditujukan untuk siswa sma atau sederajatnya untuk mempersiapkan diri menuju ujian atau kelulusan. Berisi materi tentang mata pelajaran baik dari jurusa Matematika dan Ilmu Pengetahuan Alam ataupun Ilmu Pengetahuan Sosial.</div>
             </div>
         </section>
     </main>
